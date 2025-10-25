@@ -206,6 +206,7 @@ end
 
 function _doProgress(action, start, tick, finish)
 	local player = LocalPlayer.state.ped
+	playerState.invBusy = true
 	progress_action = normalizePAct(action)
 
 	if ((not IsEntityDead(player)) and not LocalPlayer.state.isDead) or progress_action.useWhileDead then
@@ -263,6 +264,7 @@ function _doProgress(action, start, tick, finish)
 					finish(wasCancelled)
 				end
 			end)
+			playerState.invBusy = false
 		else
 			exports["sandbox-hud"]:Notification("error", "Already Doing An Action", 5000)
 		end
