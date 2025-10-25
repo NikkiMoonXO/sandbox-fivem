@@ -54,21 +54,22 @@ local function encodeData(door)
 end
 
 local function getDoor(door)
-	door = type(door) == 'table' and door or doors[door]
-	if not door then return false end
-	return {
-		id = door.id,
-		name = door.name,
-		state = door.state,
-		coords = door.coords,
-		characters = door.characters,
-		groups = door.groups,
-		items = door.items,
-		maxDistance = door.maxDistance,
-		workplace = door.workplace,
-		permissions = door.permissions,
-		onduty = door.onduty,
-	}
+    door = type(door) == 'table' and door or doors[door]
+    if not door then return false end
+    return {
+        id = door.id,
+        name = door.name,
+        state = door.state,
+        coords = door.coords,
+        characters = door.characters,
+        groups = door.groups,
+        items = door.items,
+        maxDistance = door.maxDistance,
+        workplace = door.workplace,
+        permissions = door.permissions,
+        onduty = door.onduty,
+        auto = door.auto,
+    }
 end
 
 exports('getDoor', getDoor)
