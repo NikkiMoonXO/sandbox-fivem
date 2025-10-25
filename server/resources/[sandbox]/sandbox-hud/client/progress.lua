@@ -206,6 +206,7 @@ end
 
 function _doProgress(action, start, tick, finish)
 	local player = LocalPlayer.state.ped
+	LocalPlayer.state.invBusy = true
 	progress_action = normalizePAct(action)
 
 	if ((not IsEntityDead(player)) and not LocalPlayer.state.isDead) or progress_action.useWhileDead then
@@ -363,6 +364,7 @@ function _doActionStart(player, action)
 end
 
 function _doFinish()
+	LocalPlayer.state.invBusy = false
 	LocalPlayer.state.doingAction = false
 	_doCleanup(progress_action)
 end
