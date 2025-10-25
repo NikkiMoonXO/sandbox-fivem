@@ -264,7 +264,6 @@ function _doProgress(action, start, tick, finish)
 					finish(wasCancelled)
 				end
 			end)
-			LocalPlayer.state.invBusy = false
 		else
 			exports["sandbox-hud"]:Notification("error", "Already Doing An Action", 5000)
 		end
@@ -365,6 +364,7 @@ function _doActionStart(player, action)
 end
 
 function _doFinish()
+	LocalPlayer.state.invBusy = false
 	LocalPlayer.state.doingAction = false
 	_doCleanup(progress_action)
 end
