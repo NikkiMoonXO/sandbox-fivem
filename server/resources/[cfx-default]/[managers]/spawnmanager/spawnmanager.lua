@@ -237,7 +237,7 @@ function spawnPlayer(spawnIdx, cb)
             DoScreenFadeOut(500)
 
             while not IsScreenFadedOut() do
-                Citizen.Wait(0)
+                Wait(0)
             end
         end
 
@@ -307,7 +307,7 @@ function spawnPlayer(spawnIdx, cb)
         local time = GetGameTimer()
 
         while (not HasCollisionLoadedAroundEntity(ped) and (GetGameTimer() - time) < 5000) do
-            Citizen.Wait(0)
+            Wait(0)
         end
 
         ShutdownLoadingScreen()
@@ -316,7 +316,7 @@ function spawnPlayer(spawnIdx, cb)
             DoScreenFadeIn(500)
 
             while not IsScreenFadedIn() do
-                Citizen.Wait(0)
+                Wait(0)
             end
         end
 
@@ -337,10 +337,10 @@ end
 local respawnForced
 local diedAt
 
-Citizen.CreateThread(function()
+CreateThread(function()
     -- main loop thing
     while true do
-        Citizen.Wait(50)
+        Wait(50)
 
         local playerPed = PlayerPedId()
 

@@ -344,7 +344,7 @@ AddEventHandler("Prison:Client:SetLockdown", function(entity, data)
 					TriggerServerEvent("Prison:Server:Lockdown:AlertPolice", state)
 				end
 
-				Citizen.SetTimeout(5000, function()
+				SetTimeout(5000, function()
 					_PROGRESS_LOCKDOWN = false
 				end)
 			else
@@ -368,7 +368,7 @@ AddEventHandler("Prison:Client:SetCellState", function(entity, data)
 				end
 
 				-- TriggerEvent("Prison:Client:JailAlarm", data.state)
-				Citizen.SetTimeout(5000, function()
+				SetTimeout(5000, function()
 					_PROGRESS_DOORS = false
 				end)
 			else

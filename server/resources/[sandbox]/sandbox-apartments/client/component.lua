@@ -129,7 +129,7 @@ RegisterNetEvent("Apartment:Client:InnerStuff", function(aptId, unit, wakeUp)
 	TriggerEvent("Interiors:Enter", vector3(p.interior.spawn.x, p.interior.spawn.y, p.interior.spawn.z))
 
 	if wakeUp then
-		Citizen.SetTimeout(250, function()
+		SetTimeout(250, function()
 			exports['sandbox-animations']:EmotesWakeUp(p.interior.wakeup)
 		end)
 	end

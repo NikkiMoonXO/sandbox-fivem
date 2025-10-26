@@ -73,7 +73,7 @@ AddEventHandler('Vehicles:Client:AnchorBoat', function(entity, data)
         end)
 
         _anchorCD = true
-        Citizen.SetTimeout(15000, function()
+        SetTimeout(15000, function()
             _anchorCD = false
         end)
     end

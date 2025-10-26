@@ -43,7 +43,7 @@ function RegisterItems()
 						char:SetData("Apps",
 							exports['sandbox-phone']:StoreInstallDo("chopper", char:GetData("Apps"), "force"))
 
-						Citizen.SetTimeout(5000, function()
+						SetTimeout(5000, function()
 							exports['sandbox-phone']:NotificationAdd(source, "App Installed", nil, os.time(), 6000,
 								"chopper", {
 									view = "",
