@@ -165,7 +165,7 @@ function SpawnAnimal(data, loc, bait)
 				ClearPedTasks(spawnedAnimal)
 				Wait(1500)
 				TaskStartScenarioInPlace(spawnedAnimal, "WORLD_DEER_GRAZING", 0, true)
-				Citizen.SetTimeout(12500, function()
+				SetTimeout(12500, function()
 					startFlee = true
 				end)
 			end
@@ -538,7 +538,7 @@ function StartMapAnim()
 	TaskPlayAnim(playerPed, 1.0, -1, -1, 50, 0, 0, 0, 0)
 	TaskPlayAnim(playerPed, "amb@world_human_tourist_map@male@idle_b", "idle_d", 2.0, 8.0, -1, 53, 0, 0, 0, 0)
 
-	-- Citizen.SetTimeout(11000, function()
+	-- SetTimeout(11000, function()
 	-- 	StopMapAnim()
 	-- end)
 end

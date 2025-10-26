@@ -570,7 +570,7 @@ exports('RequestWorkgroup', function(group, source)
 							}
 						)
 
-						Citizen.SetTimeout(30 * 1000, function()
+						SetTimeout(30 * 1000, function()
 							if _pendingInvites[source] ~= nil then
 								_pendingInvites[source] = nil
 

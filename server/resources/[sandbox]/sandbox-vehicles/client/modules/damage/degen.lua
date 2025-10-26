@@ -272,7 +272,7 @@ function RunVehiclePartsDamageEffects(veh)
                 if wait then
                     exports['sandbox-base']:LoggerTrace('Vehicles', 'Running Damage Effects - Clutch')
                     local isDamaged = true
-                    Citizen.SetTimeout(wait, function()
+                    SetTimeout(wait, function()
                         isDamaged = false
                     end)
                     CreateThread(function()

@@ -33,7 +33,7 @@ AddEventHandler('onClientResourceStart', function(resource)
 			if LocalPlayer.state.loggedIn and HAS_RADIO and not radioChannelCycle and not LocalPlayer.state.isCuffed and not LocalPlayer.state.isHardCuffed and not LocalPlayer.state.isDead then
 					radioChannelCycle = true
 					ToggleRadioPower(false)
-					Citizen.SetTimeout(1000, function()
+					SetTimeout(1000, function()
 						radioChannelCycle = false
 					end)
 				end
@@ -341,7 +341,7 @@ function CycleRadioChannel(up)
 		SetCharacterRadioFrequency(switchingRadioChannel, true)
 	end
 
-	Citizen.SetTimeout(1000, function()
+	SetTimeout(1000, function()
 		radioChannelCycle = false
 	end)
 end

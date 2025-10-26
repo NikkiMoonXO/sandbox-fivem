@@ -51,7 +51,7 @@ AddEventHandler("Vehicles:Client:StartUp", function()
 				or GetClosestVehicleWithinRadius(GetEntityCoords(GLOBAL_PED), 10.0)
 			if DoesEntityExist(veh) then
 				_lockdelay = true
-				Citizen.SetTimeout(1500, function()
+				SetTimeout(1500, function()
 					_lockdelay = false
 				end)
 				exports['sandbox-vehicles']:SetLocks(veh)

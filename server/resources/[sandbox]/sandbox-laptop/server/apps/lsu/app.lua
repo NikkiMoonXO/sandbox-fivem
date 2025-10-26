@@ -327,7 +327,7 @@ function RegisterItems()
 							)
 						)
 
-						Citizen.SetTimeout(5000, function()
+						SetTimeout(5000, function()
 							exports['sandbox-laptop']:AddNotification(
 								source,
 								"Program Installed",

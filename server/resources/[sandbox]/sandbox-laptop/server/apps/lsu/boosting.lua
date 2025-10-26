@@ -570,7 +570,7 @@ function RegisterItems()
             and _boosting[team.ID].state == 2
             and (not _boosting[team.ID].trackerCooldown or GetGameTimer() >= _boosting[team.ID].trackerCooldown)
         then
-            Citizen.SetTimeout(500, function()
+            SetTimeout(500, function()
                 exports["sandbox-base"]:ClientCallback(source, "Laptop:LSUnderground:Boosting:TrackerHacker", {},
                     function(using, success)
                         if using and _boosting[team?.ID] then
@@ -1012,7 +1012,7 @@ exports('LSUndergroundBoostingStart', function(teamId, contract)
                         {}
                     )
 
-                    Citizen.SetTimeout(20000, function()
+                    SetTimeout(20000, function()
                         if DoesEntityExist(spawnedVehicle) then
                             vehState.Locked = true
                             SetVehicleDoorsLocked(spawnedVehicle, 2)
@@ -1124,7 +1124,7 @@ exports('LSUndergroundBoostingComplete', function(teamId)
                 end
             end
 
-            Citizen.SetTimeout(60 * 1000, function()
+            SetTimeout(60 * 1000, function()
                 exports['sandbox-vehicles']:Delete(veh, function(success) end)
             end)
         end

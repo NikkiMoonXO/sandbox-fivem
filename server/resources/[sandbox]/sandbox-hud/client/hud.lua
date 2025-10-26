@@ -374,13 +374,13 @@ exports("IDToggle", function()
 		if not _idsCd then
 			ShowIds()
 			_idsCd = true
-			Citizen.SetTimeout(6000, function()
+			SetTimeout(6000, function()
 				exports['sandbox-hud']:IDToggle()
 			end)
 		end
 	else
 		_showingIds = false
-		Citizen.SetTimeout(10000, function()
+		SetTimeout(10000, function()
 			_idsCd = false
 		end)
 	end

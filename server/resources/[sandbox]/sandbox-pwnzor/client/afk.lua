@@ -96,7 +96,7 @@ AddEventHandler("Pwnzor:Client:EnterAFKCode", function(vals, data)
 			inputShowing = false
 
 			afkCd = true
-			Citizen.SetTimeout(1000 * GlobalState["AFKTimer"], function()
+			SetTimeout(1000 * GlobalState["AFKTimer"], function()
 				afkCd = false
 			end)
 		else
@@ -151,7 +151,7 @@ RegisterNetEvent("Characters:Client:Spawn", function()
 					else
 						time = 0
 						afkCd = true
-						Citizen.SetTimeout(1000 * 60, function()
+						SetTimeout(1000 * 60, function()
 							afkCd = false
 						end)
 					end

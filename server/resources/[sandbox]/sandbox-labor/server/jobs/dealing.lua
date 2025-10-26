@@ -286,12 +286,12 @@ AddEventHandler("Labor:Server:Startup", function()
 									_sellers[_joiners[source]].pedNet = nil
 									_sellers[_joiners[source]].netId = nil
 									exports['sandbox-labor']:TaskOffer(_joiners[source], _JOB, "Find A Corner")
-									Citizen.SetTimeout(5000, function()
+									SetTimeout(5000, function()
 										exports['sandbox-labor']:SendWorkgroupEvent(_joiners[source],
 											string.format("CornerDealing:Client:%s:EndSelling", _joiners[source]))
 									end)
 								else
-									Citizen.SetTimeout((math.random(15, 30) + 30) * 1000, function()
+									SetTimeout((math.random(15, 30) + 30) * 1000, function()
 										if _joiners[source] ~= nil then
 											exports['sandbox-labor']:SendWorkgroupEvent(_joiners[source],
 												string.format("CornerDealing:Client:%s:SoldToPed", _joiners[source]))

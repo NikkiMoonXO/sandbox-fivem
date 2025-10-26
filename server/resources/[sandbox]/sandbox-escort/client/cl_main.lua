@@ -10,7 +10,7 @@ AddEventHandler('onClientResourceStart', function(resource)
 			end
 			_timeout = true
 			DoEscort()
-			Citizen.SetTimeout(1000, function()
+			SetTimeout(1000, function()
 				_timeout = false
 			end)
 		end)

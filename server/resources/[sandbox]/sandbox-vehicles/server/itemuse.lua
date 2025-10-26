@@ -1,6 +1,6 @@
 function RegisterItemUses()
 	exports.ox_inventory:RegisterUse("lockpick", "Vehicles", function(source, slot, itemData)
-		Citizen.SetTimeout(500, function()
+		SetTimeout(500, function()
 			exports["sandbox-base"]:ClientCallback(source, "Vehicles:Lockpick", true, function(using, success)
 				if using then
 					local newValue = slot.CreateDate - (60 * 60 * 24)
@@ -18,7 +18,7 @@ function RegisterItemUses()
 	end)
 
 	exports.ox_inventory:RegisterUse("adv_lockpick", "Vehicles", function(source, slot, itemData)
-		Citizen.SetTimeout(500, function()
+		SetTimeout(500, function()
 			exports["sandbox-base"]:ClientCallback(source, "Vehicles:AdvLockpick", true, function(using, success)
 				if using then
 					local newValue = slot.CreateDate - (60 * 60 * 24)
@@ -36,7 +36,7 @@ function RegisterItemUses()
 	end)
 
 	exports.ox_inventory:RegisterUse("electronics_kit", "Vehicles", function(source, slot, itemData)
-		Citizen.SetTimeout(500, function()
+		SetTimeout(500, function()
 			exports["sandbox-base"]:ClientCallback(source, "Vehicles:Hack", true, function(using, success)
 				if using then
 					local newValue = slot.CreateDate - (60 * 60 * 24)
@@ -54,7 +54,7 @@ function RegisterItemUses()
 	end)
 
 	exports.ox_inventory:RegisterUse("adv_electronics_kit", "Vehicles", function(source, slot, itemData)
-		Citizen.SetTimeout(500, function()
+		SetTimeout(500, function()
 			exports["sandbox-base"]:ClientCallback(source, "Vehicles:AdvHack", true, function(using, success)
 				if using then
 					local newValue = slot.CreateDate - (60 * 60 * 24)
@@ -72,7 +72,7 @@ function RegisterItemUses()
 	end)
 
 	exports.ox_inventory:RegisterUse("screwdriver", "Vehicles", function(source, slot, itemData)
-		Citizen.SetTimeout(1500, function()
+		SetTimeout(1500, function()
 			exports["sandbox-base"]:ClientCallback(source, "Vehicles:Lockpick", {
 				{
 					base = 4000,

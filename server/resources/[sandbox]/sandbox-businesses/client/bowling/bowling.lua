@@ -241,7 +241,7 @@ function StartBowlingShit(alleyId, isSecondTry, currentPinsDown, currentHitPins)
 
     local pinsBitch = true
     local pinsTarget = false
-    Citizen.SetTimeout(4000, function()
+    SetTimeout(4000, function()
         pinsBitch = false
     end)
 
@@ -402,7 +402,7 @@ AddEventHandler('Keybinds:Client:KeyUp:primary_action', function()
                 exports['sandbox-hud']:ActionHide('bowling')
                 TriggerServerEvent('Bowling:Server:StartBowling', insideBowlingStart)
                 _actionCD = true
-                Citizen.SetTimeout(30000, function()
+                SetTimeout(30000, function()
                     _actionCD = false
                 end)
             end
