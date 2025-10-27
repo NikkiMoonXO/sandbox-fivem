@@ -249,7 +249,7 @@ RegisterNetEvent('ox_inventory:ready', function()
     end
 end)
 
--- SetTimeout(2500, function()
+-- Citizen.SetTimeout(2500, function()
 --     print(IsPersonalPlateValid('FFFF'))
 --     print(IsPersonalPlateValid('FFFFF'))
 --     print(IsPersonalPlateValid('FFFFFF'))

@@ -76,7 +76,7 @@ AddEventHandler('Vehicles:Client:StartUp', function()
                 _inPursuitVehicleSettings[_inPursuitVehicleMode].name or _inPursuitVehicleMode)
 
             _timeout = true
-            SetTimeout(2000, function()
+            Citizen.SetTimeout(2000, function()
                 _timeout = false
             end)
         end

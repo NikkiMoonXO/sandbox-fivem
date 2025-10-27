@@ -519,24 +519,42 @@ AddEventHandler("Vehicles:Client:Storage:Select", function(data)
     exports["sandbox-base"]:ServerCallback("Vehicles:GetVehiclesInStorageSelect", data, function(vehicle)
         if tempParkingSpace and vehicle then
             loadingVehicleStorageVehicle = true
-
-            exports['sandbox-base']:GameVehiclesSpawnLocal(tempParkingSpace.xyz, vehicle.Vehicle, tempParkingSpace.w,
-                function(veh)
-                    table.insert(_tempVehicles, veh)
-
-                    FreezeEntityPosition(veh, true)
-                    SetEntityAlpha(veh, 155)
-                    SetVehicleDoorsLocked(veh, 2)
-                    if vehicle.Properties then
-                        SetVehicleProperties(veh, vehicle.Properties)
+            
+            -- Check if model is valid
+            if not IsModelInCdimage(vehicle.Vehicle) then
+                loadingVehicleStorageVehicle = false
+            elseif not IsModelAVehicle(vehicle.Vehicle) then
+                loadingVehicleStorageVehicle = false
+            else
+                -- Set a timeout to reset the loading flag if spawn takes too long
+                local spawnTimeout = SetTimeout(5000, function()
+                    if loadingVehicleStorageVehicle then
+                        loadingVehicleStorageVehicle = false
                     end
-                    SetEntityCollision(veh, false, true)
-                    if vehicle.RegisteredPlate then
-                        SetVehicleNumberPlateText(veh, vehicle.RegisteredPlate)
-                    end
-
-                    loadingVehicleStorageVehicle = false
                 end)
+
+                exports['sandbox-base']:GameVehiclesSpawnLocal(tempParkingSpace.xyz, vehicle.Vehicle, tempParkingSpace.w,
+                    function(veh)
+                        ClearTimeout(spawnTimeout)
+                        
+                        if DoesEntityExist(veh) then
+                            table.insert(_tempVehicles, veh)
+
+                            FreezeEntityPosition(veh, true)
+                            SetEntityAlpha(veh, 155)
+                            SetVehicleDoorsLocked(veh, 2)
+                            if vehicle.Properties then
+                                SetVehicleProperties(veh, vehicle.Properties)
+                            end
+                            SetEntityCollision(veh, false, true)
+                            if vehicle.RegisteredPlate then
+                                SetVehicleNumberPlateText(veh, vehicle.RegisteredPlate)
+                            end
+                        end
+
+                        loadingVehicleStorageVehicle = false
+                    end)
+            end
         end
 
         local subMenu = {
@@ -643,7 +661,7 @@ end)
 AddEventHandler('Vehicles:Client:Storage:Retrieve', function(data)
     if loadingVehicleStorageVehicle then
         exports["sandbox-hud"]:Notification("error", 'Awaiting Vehicle Load')
-        SetTimeout(2500, function()
+        Citizen.SetTimeout(2500, function()
             CleanupTempVehicle()
         end)
         return
@@ -675,7 +693,7 @@ AddEventHandler('ListMenu:Close', function()
         if not vehActuallySpawningOne then
             CleanupTempVehicle()
         else
-            SetTimeout(2500, function()
+            Citizen.SetTimeout(2500, function()
                 CleanupTempVehicle()
             end)
         end
