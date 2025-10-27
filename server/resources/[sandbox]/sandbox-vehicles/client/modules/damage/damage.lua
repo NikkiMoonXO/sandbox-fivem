@@ -66,7 +66,7 @@ AddEventHandler("gameEventTriggered", function(event, args)
 									Wait(500)
 								end
 							end)
-							SetTimeout(math.random(1, 5) * 1000, function()
+							Citizen.SetTimeout(math.random(1, 5) * 1000, function()
 								stalling = false
 							end)
 						end

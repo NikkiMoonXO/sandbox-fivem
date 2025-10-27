@@ -1,6 +1,6 @@
 function RegisterItemUses()
 	exports.ox_inventory:RegisterUse("lockpick", "Vehicles", function(source, slot, itemData)
-		SetTimeout(500, function()
+		Citizen.SetTimeout(500, function()
 			exports["sandbox-base"]:ClientCallback(source, "Vehicles:Lockpick", true, function(using, success)
 				if using then
 					local newValue = slot.CreateDate - (60 * 60 * 24)
@@ -18,7 +18,7 @@ function RegisterItemUses()
 	end)
 
 	exports.ox_inventory:RegisterUse("adv_lockpick", "Vehicles", function(source, slot, itemData)
-		SetTimeout(500, function()
+		Citizen.SetTimeout(500, function()
 			exports["sandbox-base"]:ClientCallback(source, "Vehicles:AdvLockpick", true, function(using, success)
 				if using then
 					local newValue = slot.CreateDate - (60 * 60 * 24)
@@ -36,7 +36,7 @@ function RegisterItemUses()
 	end)
 
 	exports.ox_inventory:RegisterUse("electronics_kit", "Vehicles", function(source, slot, itemData)
-		SetTimeout(500, function()
+		Citizen.SetTimeout(500, function()
 			exports["sandbox-base"]:ClientCallback(source, "Vehicles:Hack", true, function(using, success)
 				if using then
 					local newValue = slot.CreateDate - (60 * 60 * 24)
@@ -54,7 +54,7 @@ function RegisterItemUses()
 	end)
 
 	exports.ox_inventory:RegisterUse("adv_electronics_kit", "Vehicles", function(source, slot, itemData)
-		SetTimeout(500, function()
+		Citizen.SetTimeout(500, function()
 			exports["sandbox-base"]:ClientCallback(source, "Vehicles:AdvHack", true, function(using, success)
 				if using then
 					local newValue = slot.CreateDate - (60 * 60 * 24)
@@ -72,7 +72,7 @@ function RegisterItemUses()
 	end)
 
 	exports.ox_inventory:RegisterUse("screwdriver", "Vehicles", function(source, slot, itemData)
-		SetTimeout(1500, function()
+		Citizen.SetTimeout(1500, function()
 			exports["sandbox-base"]:ClientCallback(source, "Vehicles:Lockpick", {
 				{
 					base = 4000,
@@ -284,6 +284,16 @@ end
 RegisterNetEvent('ox_inventory:ready', function()
 	if GetResourceState(GetCurrentResourceName()) == 'started' then
 		RegisterItemUses()
+	end
+end)
+
+-- Also try to register on resource start in case ox_inventory is already ready
+AddEventHandler('onResourceStart', function(resourceName)
+	if resourceName == GetCurrentResourceName() then
+		Wait(2000) -- Wait for ox_inventory to be ready
+		if GetResourceState('ox_inventory') == 'started' then
+			RegisterItemUses()
+		end
 	end
 end)
 
