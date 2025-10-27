@@ -466,9 +466,6 @@ lib.callback.register('ox_inventory:usingItem', function(data, noAnim)
     local item = Items[data.name]
 
     if item and usingItem then
-        LocalPlayer.state.invBusy = true
-        LocalPlayer.state.invHotkeys = false
-
         if not item.client then return true end
         ---@cast item +OxClientProps
         item = item.client
@@ -496,9 +493,6 @@ lib.callback.register('ox_inventory:usingItem', function(data, noAnim)
         end
 
         if not item.usetime or noAnim then
-            LocalPlayer.state.invBusy = false
-            LocalPlayer.state.invHotkeys = true
-
             local success = not PlayerData.dead
             if success then
                 if item.notification then
@@ -507,18 +501,18 @@ lib.callback.register('ox_inventory:usingItem', function(data, noAnim)
                 if item.status and client.setPlayerStatus then
                     client.setPlayerStatus(item.status)
                 end
-                
+
                 return true
             end
             return false
         end
 
-        local label = item.anim.progress or locale('using', (data.metadata and data.metadata.label) or data.label)
+        local label = item.label or locale('using', (data.metadata and data.metadata.label) or data.label)
         local disables = {
-            disableMovement    = item.disable and (item.disable.move  or item.disable.movement) or false,
-            disableCarMovement = item.disable and (item.disable.car   or item.disable.vehicle)  or false,
-            disableMouse       = item.disable and (item.disable.mouse)                           or false,
-            disableCombat      = item.disable and (item.disable.combat ~= false)                 or true,
+            disableMovement    = item.disable and (item.disable.move or item.disable.movement) or false,
+            disableCarMovement = item.disable and (item.disable.car or item.disable.vehicle) or false,
+            disableMouse       = item.disable and (item.disable.mouse) or false,
+            disableCombat      = item.disable and (item.disable.combat ~= false) or true,
         }
 
         local action = {
@@ -572,17 +566,17 @@ lib.callback.register('ox_inventory:usingItem', function(data, noAnim)
         local success = (progressed == true) and not PlayerData.dead
 
         if success then
-            if item.notification then exports['sandbox-hud']:Notification("info", item.notification) end
-            if item.status and client.setPlayerStatus then client.setPlayerStatus(item.status) end
-
-            LocalPlayer.state.invBusy = false
-            LocalPlayer.state.invHotkeys = true
+            if item.notification then
+                --lib.notify({ description = item.notification })
+                exports['sandbox-hud']:Notification("info", item.notification)
+            end
+            if item.status and client.setPlayerStatus then
+                client.setPlayerStatus(item.status)
+            end
             return true
         end
     end
 
-    LocalPlayer.state.invBusy = false
-    LocalPlayer.state.invHotkeys = true
     return false
 end)
 
