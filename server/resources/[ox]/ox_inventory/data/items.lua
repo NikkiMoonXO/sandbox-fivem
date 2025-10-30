@@ -2949,7 +2949,14 @@ return {
         weight = 1000,
         degrade = 43200,
         rarity = 4,
-        client = {},
+        client = {
+            add = function(count)
+                HandleItemState('RACE_DONGLE', count, 'racing_crappy')
+            end,
+            remove = function(count)
+                HandleItemState('RACE_DONGLE', count, 'racing_crappy')
+            end
+        },
         server = {}
     },
     ["racedongle"] = {
@@ -2958,7 +2965,14 @@ return {
         weight = 2500.0,
         degrade = 1814400,
         rarity = 4,
-        client = {},
+        client = {
+            add = function(count)
+                HandleItemState('RACE_DONGLE', count, 'racedongle')
+            end,
+            remove = function(count)
+                HandleItemState('RACE_DONGLE', count, 'racedongle')
+            end
+        },
         server = {}
     },
     ["vpn"] = {
@@ -2974,6 +2988,22 @@ return {
             end,
             remove = function(count)
                 HandleItemState('PHONE_VPN', count, 'vpn')
+            end
+        }
+    },
+    ["adv_vpn"] = {
+        label = "Advanced VPN",
+        weight = 2000,
+        degrade = 2592000,
+        rarity = 4,
+        stack = false,
+        decay = true,
+        client = {
+            add = function(count)
+                HandleItemState('ADV_VPN', count, 'adv_vpn')
+            end,
+            remove = function(count)
+                HandleItemState('ADV_VPN', count, 'adv_vpn')
             end
         }
     },

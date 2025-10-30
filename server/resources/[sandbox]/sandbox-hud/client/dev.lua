@@ -136,6 +136,28 @@ RegisterNetEvent("HUD:Client:DevMode", function()
                     end
                 },
                 {
+                    label = "Delete Object",
+                    name = "dev_delete_object",
+                    icon = "fas fa-trash",
+                    menuName = "dev_actions",
+                    canInteract = function()
+                        return _devMode
+                    end,
+                    onSelect = function(data)
+                        if NetworkGetEntityIsNetworked(data.entity) then
+                            local netId = NetworkGetNetworkIdFromEntity(data.entity)
+                            TriggerServerEvent('dev:deleteObject', netId)
+                        else
+                            if DoesEntityExist(data.entity) then
+                                SetEntityAsMissionEntity(data.entity, true, true)
+                                DeleteEntity(data.entity)
+                                SetEntityAsNoLongerNeeded(data.entity)
+                                exports['sandbox-hud']:Notification("success", "Object deleted successfully")
+                            end
+                        end
+                    end
+                },
+                {
                     name = 'debug_object',
                     event = 'ox_target:debug',
                     icon = 'fas fa-bong',
